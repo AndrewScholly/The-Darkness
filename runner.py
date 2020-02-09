@@ -18,13 +18,10 @@ class Runner(object):
         #by finding each name over and over
         return Runner.rooms.get(room_name)
     def play(self):
-        print(dedent("""You are the son of the dead leader of the greatest army in
-        the universe, and must go through random rooms generated through reality
-        to find the four parts of the staff of power in order to fix reality
-        and bring back the GAA. Along the way, you will face dangerous enemies,
-        who require you to be smart or use the pieces correctly You start
-        with nothing and must escape while facing enemies and collecting the
-        weapons"""))
+        print(dedent("""You are the son of the dead leader of the greatest army in the universe, and must go through random rooms generated through reality to find the four parts of the staff of power in order to fix reality and bring back the GAA. Along the way, you will face dangerous enemies, who require you to be smart or use the pieces correctly."""))
+        print("Press any button to begin")
+        input(" ")
+        print("-" * 20)
         current_room = Runner.random_room(self, 'room1')
         #Starts with the opening room no matter what, as set in the above code
         last_room = Runner.random_room(self, 'room6')

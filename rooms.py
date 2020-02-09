@@ -16,42 +16,97 @@ class Room(object):
 class Room1(Room):
     def enter(self):
         x = random_functions.random_number()
+        if test_value.seen == 1:
+            print(dedent("""You enter the corridor again, still looking for the map, the prior darkness being nowhere to be seen. It has to be here, you have a feeling that doesn't go away...Suddendly, the darkness folds in and a beast appears! Seems you need to fight it, the same prior items are here..."""))
+
         #used for the randomization, for whether or not s piece is collected
-        print(dedent("""You enter the corridor, looking around for the map to
-the pieces, when a darkness being jumps out at you! Without any pieces yet, you
-need to defeat the being somehow without touching him. There are a few rocks, a
-scroll, and a mysterious blaster with warning signs on it nearby"""))
+        else :
+            print(dedent("""You enter the corridor, looking around for the map to the pieces, when a darkness being jumps out at you! Without any pieces yet, you need to defeat the being somehow without touching him. There are a few rocks, a scroll, and a mysterious blaster with warning signs on it nearby"""))
+        print("1. Throw rock")
+        print("2. Fire blaster")
+        print("3. Read scroll")
+        print("-~-" * 10)
         fight = input(" ")
         #The following code is used for whatever the user puts in to decide the output
-        if fight == "fire blaster":
-            print("You destroyed the enemy, and moved on")
-            if x == 1:
-                #uses the x as a variable so there is a chance of collecting or not collecting stuff
-                print("You find the map to the pieces and get the heck out of there")
-                test_value.a = 1
-                #get around the problem of vsriables defined in this room from reverting back to 0
-                #if defined here in the eiter area
-                y = random_functions.random_rooms()
-                #a different random function, so it is not confuse
-                if y == 2:
-                    return 'room2'
-                elif y == 3:
-                    return 'room3'
-                elif y == 4:
-                    return 'room4'
-                elif y == 5:
-                    return 'room5'
+        if fight == "2":
+            if test_value.seen == 1:
+                print("The beast growls and jumps at you, the blaster doing nothing as he mauls you")
+                print("Didn't your momma tell you not to shoot at a darkness dog?")
+                return 'Death'
             else:
-                print("You don't manage to find the map, so you keep searching.")
-                return 'room1'
-        elif fight == "throw rock":
-            print("The rock hits the being and does nothing")
-            print("You died")
-            return 'Death'
-        elif fight == "throw scroll":
-            print("The scroll does nothing")
-            print("You died")
-            return 'Death'
+                print("He doesn't seem to be bothered by it, simply disappearing with a shrug")
+                if x == 1:
+                    #uses the x as a variable so there is a chance of collecting or not collecting stuff
+                    print("You find the map to the pieces and get the heck out of there")
+                    test_value.a = 1
+                    #get around the problem of variables defined in this room from reverting back to 0
+                    #if defined here in the eiter area
+                    y = random_functions.random_rooms()
+                    #a different random function, so it is not confused with the x one
+                    if y == 2:
+                        return 'room2'
+                    elif y == 3:
+                        return 'room3'
+                    elif y == 4:
+                        return 'room4'
+                    elif y == 5:
+                        return 'room5'
+                    else:
+                        test_value.seen = 1
+                        print("You don't manage to find the map, so you keep searching.")
+                        return 'room1'
+        elif fight == "1":
+            if test_value.seen == 1:
+                print("The beast sees the rock and chases after it, leaving you to look for the map")
+                if x == 1:
+                    #uses the x as a variable so there is a chance of collecting or not collecting stuff
+                    print("You find the map to the pieces and get the heck out of there")
+                    test_value.a = 1
+                    #get around the problem of vsriables defined in this room from reverting back to 0
+                    #if defined here in the eiter area
+                    y = random_functions.random_rooms()
+                    #a different random function, so it is not confused with the x one
+                    if y == 2:
+                        return 'room2'
+                    elif y == 3:
+                        return 'room3'
+                    elif y == 4:
+                        return 'room4'
+                    elif y == 5:
+                        return 'room5'
+                else:
+                    test_value.seen = 1
+                    print("You don't manage to find the map, so you keep searching.")
+                    return 'room1'
+            else:
+                print(dedent("""The rock hits the being and does nothing, as he slowly shakes his head and rushes forward, grabbing your neck and corrupting you, turning you into a darkness minion"""))
+                return 'Death'
+        elif fight == "3":
+            if test_value.seen == 1:
+                print(dedent("""You try reading, the  beast getting mad from no attention and rushing forward to corrupt you."""))
+                return 'Death'
+            else:
+                print(dedent("""You read the scroll, the being stops and watches, eventually walking up and asking what you are reading. You show him and he shrugs, disappearing into the darkness right beside you. Well then."""))
+                if x == 1:
+                    #uses the x as a variable so there is a chance of collecting or not collecting stuff
+                    print("You find the map to the pieces and get the heck out of there")
+                    test_value.a = 1
+                    #get around the problem of vsriables defined in this room from reverting back to 0
+                    #if defined here in the eiter area
+                    y = random_functions.random_rooms()
+                    #a different random function, so it is not confused with the x one
+                    if y == 2:
+                        return 'room2'
+                    elif y == 3:
+                        return 'room3'
+                    elif y == 4:
+                        return 'room4'
+                    elif y == 5:
+                        return 'room5'
+                else:
+                    test_value.seen = 1
+                    print("You don't manage to find the map, so you keep searching.")
+                    return 'room1'
         else:
             #In case if the user puts something in wrong
             print("That is not a valid response. Try throwing or firing something")
@@ -194,8 +249,7 @@ class Room5(Room):
 class Room6(Room):
     def enter(self):
         print("You enter the throne room, seeing the being of darkness up ahead")
-        print("""You manage to reduce your enemy to the scraps of armour they were in.
-                 You give your power to contain the armour and keep your enemy from reforming. You win!""")
+        print(dedent("""You manage to reduce your enemy to the scraps of armour they were in. You give your power to contain the armour and keep your enemy from reforming. You win!"""))
 class Death(Room):
     def enter(self):
-        print("You died")
+        print("You died!")
